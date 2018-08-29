@@ -1,5 +1,6 @@
-﻿namespace DelimitedDataHelper.Csv
+﻿namespace uiowa.DelimitedDataHelper.Csv
 {
+    /// <inheritdoc />
     /// <summary>
     /// Csv Reader Configuration.
     /// <para>Set up the reader to consider the case when entries are "" quoted.</para>
@@ -10,6 +11,7 @@
         public bool IsQuoted { get; set; }
 
 
+        /// <inheritdoc />
         /// <summary>
         /// Csv Reader Configuration. 
         /// Set up the reader to consider the case when entries are "" quoted.
@@ -22,6 +24,7 @@
             IsQuoted = isQuoted;
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Default Csv Reader Configuration.
         /// The reader will regard all enties are "" quoted.
@@ -40,6 +43,7 @@
         public bool IsQuoted { get; set; }
 
 
+        /// <inheritdoc />
         /// <summary>
         /// Csv Writer configurations. 
         /// Set up the writer to consider the case if need to write "" quoted entries;
@@ -52,6 +56,7 @@
             IsQuoted = isQuoted;
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Default Csv Writer configuration.
         /// The writer will write header, will use "" to escape all entries.

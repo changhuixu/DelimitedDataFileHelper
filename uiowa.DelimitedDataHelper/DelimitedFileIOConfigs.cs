@@ -1,4 +1,4 @@
-﻿namespace DelimitedDataHelper
+﻿namespace uiowa.DelimitedDataHelper
 {
     /// <summary>
     /// Delimited File Reader Configurations. By default, reader will trim starting/ending white spaces of each entry.

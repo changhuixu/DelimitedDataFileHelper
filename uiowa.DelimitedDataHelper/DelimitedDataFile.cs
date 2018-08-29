@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace DelimitedDataHelper
+namespace uiowa.DelimitedDataHelper
 {
     /// <summary>
     /// Delimited Data File. It must be a flat file.
@@ -24,7 +24,7 @@ namespace DelimitedDataHelper
         public DelimitedDataFile(string fileName, string delimiter = "\t")
         {
             if (!File.Exists(fileName)) throw new FileNotFoundException("File Not Found", fileName);
-            Rows = File.ReadAllLines(fileName);
+            Rows = File.ReadAllLines(fileName).Where(x => !string.IsNullOrWhiteSpace(x)).ToArray();
             Delimiter = delimiter;
         }
 

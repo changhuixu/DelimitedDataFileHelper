@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 
-namespace DelimitedDataHelper.Tab
+namespace uiowa.DelimitedDataHelper.Tab
 {
     public class TabDelimitedFile : DelimitedDataFile
     {
+        /// <inheritdoc />
         /// <summary>
         /// Tab ("\t") delimited file.
         /// </summary>

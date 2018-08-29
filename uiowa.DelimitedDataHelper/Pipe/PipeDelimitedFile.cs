@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 
-namespace DelimitedDataHelper.Pipe
+namespace uiowa.DelimitedDataHelper.Pipe
 {
     public class PipeDelimitedFile : DelimitedDataFile
     {
+        /// <inheritdoc />
         /// <summary>
         /// Delimited flat file with separater "|"
         /// </summary>

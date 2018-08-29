@@ -3,7 +3,7 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 
-namespace DelimitedDataHelper
+namespace uiowa.DelimitedDataHelper
 {
     internal class DelimitedFileWriter
     {

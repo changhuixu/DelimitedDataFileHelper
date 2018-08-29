@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DelimitedDataHelper.Csv
+namespace uiowa.DelimitedDataHelper.Csv
 {
     public class CsvFile : DelimitedDataFile
     {

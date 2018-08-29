@@ -1,4 +1,4 @@
-﻿namespace DelimitedDataHelper.Tests.TestModels
+﻿namespace uiowa.DelimitedDataHelper.Tests.TestModels
 {
     public class Contact
     {

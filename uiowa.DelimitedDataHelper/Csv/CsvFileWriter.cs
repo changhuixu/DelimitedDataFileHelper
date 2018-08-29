@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace DelimitedDataHelper.Csv
+namespace uiowa.DelimitedDataHelper.Csv
 {
     internal class CsvFileWriter : DelimitedFileWriter
     {
