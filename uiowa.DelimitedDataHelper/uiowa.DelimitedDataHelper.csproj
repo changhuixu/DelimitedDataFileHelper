@@ -2,10 +2,23 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <PackageId>uiowa.DelimitedDataHelper</PackageId>
+    <Title>Delimited Data Helper</Title>
+    <Version>1.0.0</Version>
+    <Authors>Changhui Xu</Authors>
+    <Company>The University Of Iowa</Company>
+    <Description>Reader and Writer for Delimited Data File (csv, tab/pipe delimited files)</Description>
+    <Summary>Reader and Writer for Delimited Data File (csv, tab/pipe delimited files)</Summary>
+    <Tags>Delimited Data Reader Writer Csv Tab Pipe</Tags>
+    <ProjectUrl>https://github.com/changhuixu/DelimitedDataFileHelper</ProjectUrl>
+    <PackageProjectUrl>https://github.com/changhuixu/DelimitedDataFileHelper</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/changhuixu/DelimitedDataFileHelper/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryUrl></RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageIconUrl></PackageIconUrl>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>C:\Projects\fbis\nuget.core\DelimitedDataHelper\uiowa.DelimitedDataHelper\uiowa.DelimitedDataHelper.xml</DocumentationFile>
-  </PropertyGroup>
 
 </Project>
