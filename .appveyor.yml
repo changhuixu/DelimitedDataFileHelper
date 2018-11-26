@@ -6,7 +6,7 @@ before_build:
   - dotnet restore
 
 environment:
-  base_version: '1.0.0'
+  base_version: '1.0.1'
   version_suffix: ''
 
 version: $(base_version).{build}$(version_suffix)
@@ -29,3 +29,10 @@ test_script:
 
 artifacts:
   - path: uiowa.DelimitedDataHelper\bin\%configuration%\*.nupkg
+
+deploy:
+  provider: NuGet
+  server:                  # remove to push to NuGet.org
+  api_key:
+    secure: 1hZBCJrj4Gf9JsmiB3ZFoj5skbSFPmMgkGZhQxExHNHQg0jvg1prGWCWvGyXkDR+
+  artifact: /.*\.nupkg/
