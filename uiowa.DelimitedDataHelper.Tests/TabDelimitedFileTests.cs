@@ -1,26 +1,24 @@
 ﻿using System;
 using System.IO;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using uiowa.DelimitedDataHelper.Tab;
 using uiowa.DelimitedDataHelper.Tests.TestModels;
+using Xunit;
 
 namespace uiowa.DelimitedDataHelper.Tests
 {
-    [TestClass]
-    public class TabDelimitedFileTests
+    public class TabDelimitedFileTests : IDisposable
     {
         private static readonly string ProjectFolder = AppDomain.CurrentDomain.BaseDirectory;
         private readonly string _input = Path.Combine(ProjectFolder, @"Data\TabDelimitedFile.txt");
         private readonly string _output = Path.Combine(ProjectFolder, @"Data\output3.txt");
 
-        [TestInitialize]
-        public void SetUp()
+        public TabDelimitedFileTests()
         {
             Console.WriteLine("Delete potential output file");
             File.Delete(_output);
         }
 
-        [TestMethod]
+        [Fact]
         public void ShouldReadAndWriteTabDelimitedFileCorrectly()
         {
             var data = new TabDelimitedFile(_input)
@@ -29,11 +27,10 @@ namespace uiowa.DelimitedDataHelper.Tests
             data.WriteToTabDelimitedFile(_output);
             var result1 = File.ReadAllBytes(_input);
             var result2 = File.ReadAllBytes(_output);
-            CollectionAssert.AreEqual(result2, result1);
+            Assert.Equal(result2, result1);
         }
 
-        [TestCleanup]
-        public void TearDown()
+        public void Dispose()
         {
             File.Delete(_input);
             File.Delete(_output);

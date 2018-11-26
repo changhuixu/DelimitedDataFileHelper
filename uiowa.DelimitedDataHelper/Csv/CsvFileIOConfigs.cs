@@ -38,8 +38,12 @@
     }
 
 
+    /// <inheritdoc />
     public class CsvWriterConfig : DelimitedFileWriterConfig
     {
+        /// <summary>
+        /// Is the cell value double quoted?
+        /// </summary>
         public bool IsQuoted { get; set; }
 
 

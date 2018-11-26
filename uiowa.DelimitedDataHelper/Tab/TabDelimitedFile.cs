@@ -2,6 +2,7 @@
 
 namespace uiowa.DelimitedDataHelper.Tab
 {
+    /// <inheritdoc />
     public class TabDelimitedFile : DelimitedDataFile
     {
         /// <inheritdoc />
@@ -15,6 +16,9 @@ namespace uiowa.DelimitedDataHelper.Tab
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public static class TabDelimitedDataWriter
     {
         /// <summary>

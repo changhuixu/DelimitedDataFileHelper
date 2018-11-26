@@ -15,6 +15,9 @@ namespace uiowa.DelimitedDataHelper.Csv
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public static class CsvFileExtensions
     {
         /// <summary>

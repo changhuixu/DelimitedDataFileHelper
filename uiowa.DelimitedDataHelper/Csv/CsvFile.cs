@@ -3,9 +3,12 @@ using System.Collections.Generic;
 
 namespace uiowa.DelimitedDataHelper.Csv
 {
+    /// <inheritdoc />
     public class CsvFile : DelimitedDataFile
     {
         private const string QuotedDelimiter = "\",\"";
+
+        /// <inheritdoc />
         public CsvFile(string fileName) : base(fileName, ",")
         {
         }

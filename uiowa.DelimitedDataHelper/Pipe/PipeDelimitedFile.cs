@@ -2,6 +2,7 @@
 
 namespace uiowa.DelimitedDataHelper.Pipe
 {
+    /// <inheritdoc />
     public class PipeDelimitedFile : DelimitedDataFile
     {
         /// <inheritdoc />
@@ -15,6 +16,9 @@ namespace uiowa.DelimitedDataHelper.Pipe
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public static class PipeDelimitedDataWriter
     {
         /// <summary>
