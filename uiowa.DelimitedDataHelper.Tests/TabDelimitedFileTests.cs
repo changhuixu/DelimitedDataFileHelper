@@ -24,8 +24,8 @@ namespace uiowa.DelimitedDataHelper.Tests
                         .SkipNRows(1)
                         .GetData<Contact>();
             data.WriteToTabDelimitedFile(_output);
-            var result1 = File.ReadAllBytes(_input);
-            var result2 = File.ReadAllBytes(_output);
+            var result1 = File.ReadAllLines(_input);
+            var result2 = File.ReadAllLines(_output);
             Assert.Equal(result2, result1);
         }
 
@@ -33,7 +33,6 @@ namespace uiowa.DelimitedDataHelper.Tests
         {
             File.Delete(_input);
             File.Delete(_output);
-            Console.WriteLine("Output file deleted");
         }
     }
 }

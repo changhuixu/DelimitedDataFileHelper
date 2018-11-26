@@ -24,8 +24,20 @@ namespace uiowa.DelimitedDataHelper.Tests
                         .SkipNRows(1)
                         .GetData<Contact>();
             data.WriteToCsvFile(_output);
-            var result1 = File.ReadAllBytes(_input);
-            var result2 = File.ReadAllBytes(_output);
+            var result1 = File.ReadAllLines(_input);
+            var result2 = File.ReadAllLines(_output);
+            foreach (var b in result1)
+            {
+                Console.Write(b);
+            }
+            Console.WriteLine();
+
+            foreach (var b in result2)
+            {
+                Console.Write(b);
+            }
+            Console.WriteLine();
+
             Assert.Equal(result2, result1);
         }
 
