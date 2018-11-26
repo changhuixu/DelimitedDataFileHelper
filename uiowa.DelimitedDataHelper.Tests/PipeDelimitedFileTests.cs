@@ -8,9 +8,8 @@ namespace uiowa.DelimitedDataHelper.Tests
 {
     public class PipeDelimitedFileTests : IDisposable
     {
-        private static readonly string ProjectFolder = AppDomain.CurrentDomain.BaseDirectory;
-        private readonly string _input = Path.Combine(ProjectFolder, @"Data\PipeDelimitedFile.txt");
-        private readonly string _output = Path.Combine(ProjectFolder, @"Data\output2.txt");
+        private readonly string _input = Path.Combine(@"Data\PipeDelimitedFile.txt");
+        private readonly string _output = Path.Combine(@"Data\output2.txt");
 
         public PipeDelimitedFileTests()
         {

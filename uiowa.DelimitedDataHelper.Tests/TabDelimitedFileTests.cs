@@ -8,9 +8,8 @@ namespace uiowa.DelimitedDataHelper.Tests
 {
     public class TabDelimitedFileTests : IDisposable
     {
-        private static readonly string ProjectFolder = AppDomain.CurrentDomain.BaseDirectory;
-        private readonly string _input = Path.Combine(ProjectFolder, @"Data\TabDelimitedFile.txt");
-        private readonly string _output = Path.Combine(ProjectFolder, @"Data\output3.txt");
+        private readonly string _input = Path.Combine(@"Data\TabDelimitedFile.txt");
+        private readonly string _output = Path.Combine(@"Data\output3.txt");
 
         public TabDelimitedFileTests()
         {

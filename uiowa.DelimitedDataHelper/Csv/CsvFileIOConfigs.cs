@@ -8,6 +8,9 @@
     /// </summary>
     public class CsvReaderConfig : DelimitedFileReaderConfig
     {
+        /// <summary>
+        /// Is the cell value double quoted?
+        /// </summary>
         public bool IsQuoted { get; set; }
 
 

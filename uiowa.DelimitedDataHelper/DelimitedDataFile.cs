@@ -12,7 +12,13 @@ namespace uiowa.DelimitedDataHelper
     /// </summary>
     public class DelimitedDataFile
     {
+        /// <summary>
+        /// 
+        /// </summary>
         protected readonly string Delimiter;
+        /// <summary>
+        /// File content rows
+        /// </summary>
         public string[] Rows { get; protected set; }
 
         /// <summary>
@@ -66,6 +72,11 @@ namespace uiowa.DelimitedDataHelper
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
         protected virtual string Sanitize(string s)
         {
             return s.Trim();

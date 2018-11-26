@@ -8,9 +8,8 @@ namespace uiowa.DelimitedDataHelper.Tests
 {
     public class CsvFileTests : IDisposable
     {
-        private static readonly string ProjectFolder = AppDomain.CurrentDomain.BaseDirectory;
-        private readonly string _input = Path.Combine(ProjectFolder, @"Data\Contacts.csv");
-        private readonly string _output = Path.Combine(ProjectFolder, @"Data\output1.csv");
+        private readonly string _input = Path.Combine(@"Data\Contacts.csv");
+        private readonly string _output = Path.Combine(@"Data\output1.csv");
 
         public CsvFileTests()
         {

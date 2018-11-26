@@ -5,6 +5,9 @@
     /// </summary>
     public class DelimitedFileReaderConfig
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public bool NeedTrimStartEndWhiteSpaces { get; set; }
 
         /// <summary>
@@ -30,6 +33,9 @@
     /// </summary>
     public class DelimitedFileWriterConfig
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public bool WriteHeader { get; set; }
 
         /// <summary>
