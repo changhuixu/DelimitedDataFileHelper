@@ -2,6 +2,9 @@
 
 Reader and Writer for Delimited Data File (csv, tab/pipe delimited files)
 
+![AppVeyor](https://img.shields.io/appveyor/ci/changhuixu/DelimitedDataFileHelper.svg?logo=appveyor&style=flat-square)
+![NuGet](https://img.shields.io/nuget/v/uiowa.DelimitedDataHelper.svg?logo=nuget&style=flat-square)
+
 ---
 
 1. Why need to have this little library?
