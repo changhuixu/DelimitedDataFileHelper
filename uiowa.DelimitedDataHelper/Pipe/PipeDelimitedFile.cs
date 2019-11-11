@@ -7,7 +7,7 @@ namespace uiowa.DelimitedDataHelper.Pipe
     {
         /// <inheritdoc />
         /// <summary>
-        /// Delimited flat file with separater "|"
+        /// Delimited flat file with separator "|"
         /// </summary>
         /// <param name="fileName"></param>
         public PipeDelimitedFile(string fileName) : base(fileName, "|")

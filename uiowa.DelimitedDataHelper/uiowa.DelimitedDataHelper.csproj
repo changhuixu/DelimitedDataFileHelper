@@ -1,10 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
     <PackageId>uiowa.DelimitedDataHelper</PackageId>
     <Title>Delimited Data Helper</Title>
-    <Version>1.0.0</Version>
+    <Version>1.0.2</Version>
     <Authors>Changhui Xu</Authors>
     <Company>The University Of Iowa</Company>
     <Description>Reader and Writer for Delimited Data File (csv, tab/pipe delimited files)</Description>
@@ -12,13 +12,19 @@
     <Tags>Delimited Data Reader Writer Csv Tab Pipe</Tags>
     <ProjectUrl>https://github.com/changhuixu/DelimitedDataFileHelper</ProjectUrl>
     <PackageProjectUrl>https://github.com/changhuixu/DelimitedDataFileHelper</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/changhuixu/DelimitedDataFileHelper/blob/master/LICENSE</PackageLicenseUrl>
-    <RepositoryUrl></RepositoryUrl>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <RepositoryUrl>https://github.com/changhuixu/DelimitedDataFileHelper</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageIconUrl></PackageIconUrl>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>

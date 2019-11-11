@@ -1,23 +1,26 @@
 ﻿using System;
 using System.IO;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using uiowa.DelimitedDataHelper.Csv;
 using uiowa.DelimitedDataHelper.Tests.TestModels;
-using Xunit;
 
 namespace uiowa.DelimitedDataHelper.Tests
 {
-    public class CsvFileTests : IDisposable
+    [TestClass]
+    public class CsvFileTests
     {
-        private readonly string _input = Path.Combine(@"Data\Contacts.csv");
-        private readonly string _output = Path.Combine(@"Data\output1.csv");
+        private static readonly string ProjDir = AppDomain.CurrentDomain.BaseDirectory;
+        private readonly string _input = Path.Combine(ProjDir, @"Data", @"Contacts.csv");
+        private readonly string _output = Path.Combine(ProjDir, @"Data", @"output1.csv");
 
-        public CsvFileTests()
+        [TestInitialize]
+        public void Initialize()
         {
             Console.WriteLine("Delete potential output file");
             File.Delete(_output);
         }
 
-        [Fact]
+        [TestMethod]
         public void ShouldReadAndWriteCsvCorrectly()
         {
             var data = new CsvFile(_input)
@@ -38,10 +41,11 @@ namespace uiowa.DelimitedDataHelper.Tests
             }
             Console.WriteLine();
 
-            Assert.Equal(result2, result1);
+            CollectionAssert.AreEqual(result2, result1);
         }
 
-        public void Dispose()
+        [TestCleanup]
+        public void Cleanup()
         {
             File.Delete(_input);
             File.Delete(_output);

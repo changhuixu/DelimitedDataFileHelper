@@ -30,7 +30,7 @@
         /// <inheritdoc />
         /// <summary>
         /// Default Csv Reader Configuration.
-        /// The reader will regard all enties are "" quoted.
+        /// The reader will regard all entries are "" quoted.
         /// The reader will trim starting/ending white spaces.
         /// </summary>
         public CsvReaderConfig()

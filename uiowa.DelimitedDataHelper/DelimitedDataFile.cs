@@ -29,7 +29,7 @@ namespace uiowa.DelimitedDataHelper
         /// <param name="delimiter">Optional. By default, the delimiter is tab ("\t").</param>
         public DelimitedDataFile(string fileName, string delimiter = "\t")
         {
-            if (!File.Exists(fileName)) throw new FileNotFoundException("File Not Found", fileName);
+            if (!File.Exists(fileName)) throw new FileNotFoundException($"File [{fileName}] Not Found");
             Rows = File.ReadAllLines(fileName).Where(x => !string.IsNullOrWhiteSpace(x)).ToArray();
             Delimiter = delimiter;
         }
