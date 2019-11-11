@@ -26,7 +26,6 @@ jobs:
       uses: codecov/codecov-action@v1.0.3
       with:
         token: ${{secrets.CODECOV_TOKEN}}
-        file: ./TestResults/Coverage/coverage.cobertura.xml
         flags: unittests
         name: codecov-umbrella
     - name: Build and deploy NuGet package
@@ -41,7 +40,7 @@ jobs:
           cd ./uiowa.DelimitedDataHelper/
           dotnet publish -c=Release /p:Version="${RELEASE_VERSION:1}"
           ls ./bin/Release
-          # dotnet nuget push ./bin/Release/*.nupkg -k $NUGET_API_KEY -s https://api.nuget.org/v3/index.json
+          dotnet nuget push ./bin/Release/*.nupkg -k $NUGET_API_KEY -s https://api.nuget.org/v3/index.json
         else
           echo "No valid version tag was found. Done for today."
         fi
