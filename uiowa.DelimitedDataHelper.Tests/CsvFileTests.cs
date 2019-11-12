@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using uiowa.DelimitedDataHelper.Csv;
 using uiowa.DelimitedDataHelper.Tests.TestModels;
@@ -29,19 +30,16 @@ namespace uiowa.DelimitedDataHelper.Tests
             data.WriteToCsvFile(_output);
             var result1 = File.ReadAllLines(_input);
             var result2 = File.ReadAllLines(_output);
-            foreach (var b in result1)
-            {
-                Console.Write(b);
-            }
-            Console.WriteLine();
-
-            foreach (var b in result2)
-            {
-                Console.Write(b);
-            }
-            Console.WriteLine();
-
             CollectionAssert.AreEqual(result2, result1);
+
+
+            var data2 = new CsvFile(_input)
+                .SkipNRows(1)
+                .GetData<Contact>();
+            data2.WriteToCsvFile(_output, new CsvWriterConfig(writeHeader: false));
+            var result3 = File.ReadAllLines(_input).Skip(1).ToArray();
+            var result4 = File.ReadAllLines(_output);
+            CollectionAssert.AreEqual(result3, result4);
         }
 
         [TestCleanup]
