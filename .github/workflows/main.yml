@@ -18,16 +18,15 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.0.100
-    - name: Generate coverage report
+    - name: Generate coverage report and upload to coveralls.io
+      env:
+        COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
       run: |
         cd ./uiowa.DelimitedDataHelper.Tests/
-        dotnet test /p:CollectCoverage=true /p:CoverletOutput=TestResults/Coverage/ /p:CoverletOutputFormat=cobertura
-    - name: Upload coverage to Codecov  
-      uses: codecov/codecov-action@v1.0.3
-      with:
-        token: ${{secrets.CODECOV_TOKEN}}
-        flags: unittests
-        name: codecov-umbrella
+        dotnet test /p:CollectCoverage=true /p:CoverletOutput=TestResults/ /p:CoverletOutputFormat=opencover
+        dotnet tool install coveralls.net --tool-path TestResults
+        cd ./TestResults
+        ./csmacnz.Coveralls --opencover -i coverage.opencover.xml --useRelativePaths --repoToken $COVERALLS_REPO_TOKEN
     - name: Build and deploy NuGet package
       env:
         NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}

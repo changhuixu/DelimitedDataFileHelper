@@ -4,6 +4,7 @@ Reader and Writer for Delimited Data File (csv, tab/pipe delimited files)
 
 ![ ](https://github.com/changhuixu/DelimitedDataFileHelper/workflows/CI/badge.svg)
 ![NuGet](https://img.shields.io/nuget/v/uiowa.DelimitedDataHelper.svg?logo=nuget&style=flat-square)
+[![Coverage Status](https://coveralls.io/repos/github/changhuixu/DelimitedDataFileHelper/badge.svg)](https://coveralls.io/github/changhuixu/DelimitedDataFileHelper)
 
 This is a demo library for my learning and practice purposes.
 

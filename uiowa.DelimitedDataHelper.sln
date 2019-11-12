@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29318.209
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "uiowa.DelimitedDataHelper", "uiowa.DelimitedDataHelper\uiowa.DelimitedDataHelper.csproj", "{657BC75F-071A-423F-BF39-4678DE65604C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "uiowa.DelimitedDataHelper", "uiowa.DelimitedDataHelper\uiowa.DelimitedDataHelper.csproj", "{657BC75F-071A-423F-BF39-4678DE65604C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "uiowa.DelimitedDataHelper.Tests", "uiowa.DelimitedDataHelper.Tests\uiowa.DelimitedDataHelper.Tests.csproj", "{25327BB7-698E-4CD3-AE3D-0EB0B0083180}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "uiowa.DelimitedDataHelper.Tests", "uiowa.DelimitedDataHelper.Tests\uiowa.DelimitedDataHelper.Tests.csproj", "{25327BB7-698E-4CD3-AE3D-0EB0B0083180}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{657BC75F-071A-423F-BF39-4678DE65604C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -44,5 +41,11 @@ Global
 		{25327BB7-698E-4CD3-AE3D-0EB0B0083180}.Release|x64.Build.0 = Release|Any CPU
 		{25327BB7-698E-4CD3-AE3D-0EB0B0083180}.Release|x86.ActiveCfg = Release|Any CPU
 		{25327BB7-698E-4CD3-AE3D-0EB0B0083180}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {98ACE32B-D11E-4D70-B1BE-705064B34B2A}
 	EndGlobalSection
 EndGlobal
