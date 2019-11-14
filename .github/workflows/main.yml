@@ -18,15 +18,16 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.0.100
-    - name: Generate coverage report and upload to coveralls.io
-      env:
-        COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+    - name: Generate coverage report
       run: |
+        printenv
         cd ./uiowa.DelimitedDataHelper.Tests/
-        dotnet test /p:CollectCoverage=true /p:CoverletOutput=TestResults/ /p:CoverletOutputFormat=opencover
-        dotnet tool install coveralls.net --tool-path TestResults
-        cd ./TestResults
-        ./csmacnz.Coveralls --opencover -i coverage.opencover.xml --useRelativePaths --repoToken $COVERALLS_REPO_TOKEN
+        dotnet test /p:CollectCoverage=true /p:CoverletOutput=TestResults/ /p:CoverletOutputFormat=lcov
+    - name: Publish coverage report to coveralls.io
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        path-to-lcov: ./uiowa.DelimitedDataHelper.Tests/TestResults/coverage.info 
     - name: Build and deploy NuGet package
       env:
         NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
@@ -35,7 +36,7 @@ jobs:
         RELEASE_VERSION=${GITHUB_REF:10}
         echo $RELEASE_VERSION
         if [[ $RELEASE_VERSION == v* ]]; then
-          echo "Relase version:" $RELEASE_VERSION
+          echo "Publishing NuGet package version:" $RELEASE_VERSION
           cd ./uiowa.DelimitedDataHelper/
           dotnet publish -c=Release /p:Version="${RELEASE_VERSION:1}"
           ls ./bin/Release
