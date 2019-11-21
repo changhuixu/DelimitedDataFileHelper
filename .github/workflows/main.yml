@@ -38,7 +38,7 @@ jobs:
         if [[ $RELEASE_VERSION == v* ]]; then
           echo "Publishing NuGet package version:" $RELEASE_VERSION
           cd ./uiowa.DelimitedDataHelper/
-          dotnet publish -c=Release /p:Version="${RELEASE_VERSION:1}"
+          dotnet pack /p:Version="${RELEASE_VERSION:1}"
           ls ./bin/Release
           dotnet nuget push ./bin/Release/*.nupkg -k $NUGET_API_KEY -s https://api.nuget.org/v3/index.json
         else
