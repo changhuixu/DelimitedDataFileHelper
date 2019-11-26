@@ -41,16 +41,23 @@ namespace uiowa.DelimitedDataHelper.Csv
             var objProperties = typeof(T).GetProperties();
             foreach (var x in Rows)
             {
+                var result = new T();
                 var items = x.Split(new[] { QuotedDelimiter }, StringSplitOptions.None);
                 items[0] = items[0].Substring(1);
-                items[objProperties.Length - 1] = TrimLastCharacter(items[objProperties.Length - 1]);
-                var result = new T();
-                var i = 0;
-                foreach (var propertyInfo in objProperties)
+                try
                 {
-                    var value = config.NeedTrimStartEndWhiteSpaces ? items[i].Trim() : items[i];
-                    propertyInfo.SetValue(result, Convert.ChangeType(value, propertyInfo.PropertyType));
-                    i++;
+                    items[objProperties.Length - 1] = TrimLastCharacter(items[objProperties.Length - 1]);
+                    var i = 0;
+                    foreach (var propertyInfo in objProperties)
+                    {
+                        var value = config.NeedTrimStartEndWhiteSpaces ? items[i].Trim() : items[i];
+                        propertyInfo.SetValue(result, Convert.ChangeType(value, propertyInfo.PropertyType));
+                        i++;
+                    }
+                }
+                catch (IndexOutOfRangeException e)
+                {
+                    throw new IndexOutOfRangeException($"{e.Message} DataRow: {x}");
                 }
                 yield return result;
             }

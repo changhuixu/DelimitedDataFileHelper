@@ -12,6 +12,7 @@ namespace uiowa.DelimitedDataHelper.Tests
     {
         private static readonly string ProjDir = AppDomain.CurrentDomain.BaseDirectory;
         private readonly string _input = Path.Combine(ProjDir, @"Data", @"Contacts.csv");
+        private readonly string _input2 = Path.Combine(ProjDir, @"Data", @"Contacts2.csv");
         private readonly string _output = Path.Combine(ProjDir, @"Data", @"output1.csv");
 
         [TestInitialize]
@@ -40,12 +41,25 @@ namespace uiowa.DelimitedDataHelper.Tests
             var result3 = File.ReadAllLines(_input).Skip(1).ToArray();
             var result4 = File.ReadAllLines(_output);
             CollectionAssert.AreEqual(result3, result4);
+
+            File.Delete(_input);
+        }
+
+        [TestMethod]
+        public void ShouldThrowExceptionWhenCsvHasExtraColumn()
+        {
+            Action action = () => _ = new CsvFile(_input2)
+                .SkipNRows(1)
+                .GetData<Contact>().ToList();
+            var e = Assert.ThrowsException<IndexOutOfRangeException>(action);
+            Assert.AreEqual("Index was outside the bounds of the array. DataRow: \"Johnson\",\"ABC\",\"johnson@abc.com\"", e.Message);
+
+            File.Delete(_input2);
         }
 
         [TestCleanup]
         public void Cleanup()
         {
-            File.Delete(_input);
             File.Delete(_output);
             Console.WriteLine("Output file deleted");
         }
