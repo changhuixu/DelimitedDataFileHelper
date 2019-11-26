@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using uiowa.DelimitedDataHelper.Pipe;
 using uiowa.DelimitedDataHelper.Tests.TestModels;
@@ -11,6 +12,7 @@ namespace uiowa.DelimitedDataHelper.Tests
     {
         private static readonly string ProjDir = AppDomain.CurrentDomain.BaseDirectory;
         private readonly string _input = Path.Combine(ProjDir, @"Data", @"PipeDelimitedFile.txt");
+        private readonly string _input2 = Path.Combine(ProjDir, @"Data", @"PipeDelimitedFile2.txt");
         private readonly string _output = Path.Combine(ProjDir, @"Data", @"output2.txt");
 
         [TestInitialize]
@@ -30,12 +32,25 @@ namespace uiowa.DelimitedDataHelper.Tests
             var result1 = File.ReadAllLines(_input);
             var result2 = File.ReadAllLines(_output);
             CollectionAssert.AreEqual(result2, result1);
+
+            File.Delete(_input);
+        }
+
+        [TestMethod]
+        public void ShouldThrowExceptionWhenWrongColumnNumber()
+        {
+            Action action = () => _ = new PipeDelimitedFile(_input2)
+                .SkipNRows(1)
+                .GetData<Contact>().ToList();
+            var e = Assert.ThrowsException<IndexOutOfRangeException>(action);
+            Assert.AreEqual("Index was outside the bounds of the array. DataRow: Johnson|ABC|johnson@abc.com", e.Message);
+
+            File.Delete(_input2);
         }
 
         [TestCleanup]
         public void Cleanup()
         {
-            File.Delete(_input);
             File.Delete(_output);
         }
     }

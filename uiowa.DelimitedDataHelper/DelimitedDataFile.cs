@@ -13,7 +13,7 @@ namespace uiowa.DelimitedDataHelper
     public class DelimitedDataFile
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected readonly string Delimiter;
         /// <summary>
@@ -62,18 +62,25 @@ namespace uiowa.DelimitedDataHelper
                 var items = x.Split(new[] { Delimiter }, StringSplitOptions.None);
                 var result = new T();
                 var i = 0;
-                foreach (var propertyInfo in objProperties)
+                try
                 {
-                    var value = config.NeedTrimStartEndWhiteSpaces ? Sanitize(items[i]) : items[i];
-                    propertyInfo.SetValue(result, Convert.ChangeType(value, propertyInfo.PropertyType));
-                    i++;
+                    foreach (var propertyInfo in objProperties)
+                    {
+                        var value = config.NeedTrimStartEndWhiteSpaces ? Sanitize(items[i]) : items[i];
+                        propertyInfo.SetValue(result, Convert.ChangeType(value, propertyInfo.PropertyType));
+                        i++;
+                    }
+                }
+                catch (IndexOutOfRangeException e)
+                {
+                    throw new IndexOutOfRangeException($"{e.Message} DataRow: {x}");
                 }
                 yield return result;
             }
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="s"></param>
         /// <returns></returns>
