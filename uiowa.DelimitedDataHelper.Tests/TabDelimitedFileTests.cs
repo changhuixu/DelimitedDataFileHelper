@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using uiowa.DelimitedDataHelper.Tab;
 using uiowa.DelimitedDataHelper.Tests.TestModels;
@@ -32,10 +33,20 @@ namespace uiowa.DelimitedDataHelper.Tests
             CollectionAssert.AreEqual(result2, result1);
         }
 
+        [TestMethod]
+        public void ShouldConvertToString()
+        {
+            var dataString = new TabDelimitedFile(_input)
+                .SkipNRows(1)
+                .GetData<Contact>().AsTabedString();
+            var result1 = File.ReadAllLines(_input).ToArray();
+            var result2 = dataString.Split(Environment.NewLine).Where(x => !string.IsNullOrWhiteSpace(x)).ToArray();
+            CollectionAssert.AreEqual(result2, result1);
+        }
+
         [TestCleanup]
         public void Cleanup()
         {
-            File.Delete(_input);
             File.Delete(_output);
         }
     }

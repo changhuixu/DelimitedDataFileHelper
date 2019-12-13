@@ -26,11 +26,32 @@ namespace uiowa.DelimitedDataHelper
             if (File.Exists(fileName)) File.Delete(fileName);
             var objProperties = typeof(T).GetProperties();
 
-            if (config.WriteHeader) WriteHeader(fileName, objProperties);
+            if (config.WriteHeader)
+            {
+                var header = GetHeader(objProperties);
+                File.AppendAllText(fileName, header);
+            }
             File.AppendAllText(fileName, WriteRows(data, objProperties));
         }
 
-        protected virtual void WriteHeader(string output, PropertyInfo[] objProperties)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="data"></param>
+        /// <param name="config"></param>
+        /// <returns></returns>
+        public string ConvertToString<T>(IEnumerable<T> data, DelimitedFileWriterConfig config = null)
+        {
+            if (config == null) config = new DelimitedFileWriterConfig();
+            var objProperties = typeof(T).GetProperties();
+            var sb = new StringBuilder();
+            if (config.WriteHeader) sb.Append(GetHeader(objProperties));
+            sb.Append(WriteRows(data, objProperties));
+            return sb.ToString();
+        }
+
+        protected virtual string GetHeader(PropertyInfo[] objProperties)
         {
             var result = new StringBuilder();
             foreach (var objProperty in objProperties)
@@ -40,7 +61,7 @@ namespace uiowa.DelimitedDataHelper
 
             result.Length -= _delimiter.Length;
             result.AppendLine();
-            File.AppendAllText(output, result.ToString());
+            return result.ToString();
         }
 
         protected virtual string WriteRows<T>(IEnumerable<T> objs, PropertyInfo[] objProperties)

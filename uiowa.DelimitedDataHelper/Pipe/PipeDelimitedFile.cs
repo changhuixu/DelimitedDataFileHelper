@@ -33,5 +33,17 @@ namespace uiowa.DelimitedDataHelper.Pipe
         {
             new DelimitedFileWriter("|").CreateFileWithData(data, fileName, config);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="config"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public static string AsPipedString<T>(this IEnumerable<T> data, DelimitedFileWriterConfig config = null)
+        {
+            return new DelimitedFileWriter("|").ConvertToString(data, config);
+        }
     }
 }

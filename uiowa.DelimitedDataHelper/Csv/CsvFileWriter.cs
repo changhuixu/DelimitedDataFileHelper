@@ -40,5 +40,22 @@ namespace uiowa.DelimitedDataHelper.Csv
             new DelimitedFileWriter().CreateFileWithData(data, fileName, config);
         }
 
+        /// <summary>
+        /// Convert a collection of Data to string.
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="config"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public static string AsString<T>(this IEnumerable<T> data, CsvWriterConfig config = null)
+        {
+            if (config == null) config = new CsvWriterConfig();
+            if (config.IsQuoted)
+            {
+                return new CsvFileWriter().ConvertToString(data, config);
+
+            }
+            return new DelimitedFileWriter().ConvertToString(data, config);
+        }
     }
 }

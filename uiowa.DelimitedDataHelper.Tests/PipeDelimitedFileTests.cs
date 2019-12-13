@@ -32,8 +32,6 @@ namespace uiowa.DelimitedDataHelper.Tests
             var result1 = File.ReadAllLines(_input);
             var result2 = File.ReadAllLines(_output);
             CollectionAssert.AreEqual(result2, result1);
-
-            File.Delete(_input);
         }
 
         [TestMethod]
@@ -44,8 +42,17 @@ namespace uiowa.DelimitedDataHelper.Tests
                 .GetData<Contact>().ToList();
             var e = Assert.ThrowsException<IndexOutOfRangeException>(action);
             Assert.AreEqual("Index was outside the bounds of the array. DataRow: Johnson|ABC|johnson@abc.com", e.Message);
+        }
 
-            File.Delete(_input2);
+        [TestMethod]
+        public void ShouldConvertToString()
+        {
+            var dataString = new PipeDelimitedFile(_input)
+                .SkipNRows(1)
+                .GetData<Contact>().AsPipedString();
+            var result1 = File.ReadAllLines(_input).ToArray();
+            var result2 = dataString.Split(Environment.NewLine).Where(x => !string.IsNullOrWhiteSpace(x)).ToArray();
+            CollectionAssert.AreEqual(result2, result1);
         }
 
         [TestCleanup]
