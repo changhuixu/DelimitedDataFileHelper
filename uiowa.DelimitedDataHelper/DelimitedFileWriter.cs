@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Text;
 
 namespace uiowa.DelimitedDataHelper
@@ -20,9 +18,9 @@ namespace uiowa.DelimitedDataHelper
         /// <param name="data">List of data with type of (T).</param>
         /// <param name="fileName"></param>
         /// <param name="config">Optional. By default, true, write header, which is a list of property names in type (T).</param>
-        public void CreateFileWithData<T>(IEnumerable<T> data, string fileName, DelimitedFileWriterConfig config = null)
+        public void CreateFileWithData<T>(IEnumerable<T> data, string fileName, DelimitedFileWriterConfig? config = null)
         {
-            if (config == null) config = new DelimitedFileWriterConfig();
+            config ??= new DelimitedFileWriterConfig();
             if (File.Exists(fileName)) File.Delete(fileName);
             var objProperties = typeof(T).GetProperties();
 
@@ -41,9 +39,9 @@ namespace uiowa.DelimitedDataHelper
         /// <param name="data"></param>
         /// <param name="config"></param>
         /// <returns></returns>
-        public string ConvertToString<T>(IEnumerable<T> data, DelimitedFileWriterConfig config = null)
+        public string ConvertToString<T>(IEnumerable<T> data, DelimitedFileWriterConfig? config = null)
         {
-            if (config == null) config = new DelimitedFileWriterConfig();
+            config ??= new DelimitedFileWriterConfig();
             var objProperties = typeof(T).GetProperties();
             var sb = new StringBuilder();
             if (config.WriteHeader) sb.Append(GetHeader(objProperties));
@@ -64,13 +62,11 @@ namespace uiowa.DelimitedDataHelper
             return result.ToString();
         }
 
-        protected virtual string WriteRows<T>(IEnumerable<T> objs, PropertyInfo[] objProperties)
+        protected virtual string WriteRows<T>(IEnumerable<T> data, PropertyInfo[] objProperties)
         {
-            if (objs == null) return null;
-
             var result = new StringBuilder();
 
-            foreach (var obj in objs)
+            foreach (var obj in data)
             {
                 foreach (var objProperty in objProperties)
                 {
@@ -83,7 +79,7 @@ namespace uiowa.DelimitedDataHelper
             return result.ToString();
         }
 
-        protected virtual string Escape(object o)
+        protected virtual string Escape(object? o)
         {
             return o?.ToString() ?? string.Empty;
         }

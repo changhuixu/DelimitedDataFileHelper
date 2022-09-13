@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace uiowa.DelimitedDataHelper.Pipe
+﻿namespace uiowa.DelimitedDataHelper
 {
     /// <inheritdoc />
     public class PipeDelimitedFile : DelimitedDataFile
@@ -29,7 +27,7 @@ namespace uiowa.DelimitedDataHelper.Pipe
         /// <param name="data"></param>
         /// <param name="fileName"></param>
         /// <param name="config"></param>
-        public static void WriteToPipeDelimitedFile<T>(this IEnumerable<T> data, string fileName, DelimitedFileWriterConfig config = null)
+        public static void WriteToPipeDelimitedFile<T>(this IEnumerable<T> data, string fileName, DelimitedFileWriterConfig? config = null)
         {
             new DelimitedFileWriter("|").CreateFileWithData(data, fileName, config);
         }
@@ -41,7 +39,7 @@ namespace uiowa.DelimitedDataHelper.Pipe
         /// <param name="config"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public static string AsPipedString<T>(this IEnumerable<T> data, DelimitedFileWriterConfig config = null)
+        public static string AsPipDelimitedString<T>(this IEnumerable<T> data, DelimitedFileWriterConfig? config = null)
         {
             return new DelimitedFileWriter("|").ConvertToString(data, config);
         }

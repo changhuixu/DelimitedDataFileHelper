@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-
-namespace uiowa.DelimitedDataHelper
+﻿namespace uiowa.DelimitedDataHelper
 {
     /// <summary>
     /// Delimited Data File. It must be a flat file.
@@ -52,9 +47,9 @@ namespace uiowa.DelimitedDataHelper
         /// <typeparam name="T"></typeparam>
         /// <param name="config">Optional. By default, reader will trim starting/ending white spaces of each entry.</param>
         /// <returns></returns>
-        public virtual IEnumerable<T> GetData<T>(DelimitedFileReaderConfig config = null) where T : new()
+        public virtual IEnumerable<T> GetData<T>(DelimitedFileReaderConfig? config = null) where T : new()
         {
-            if (config == null) config = new DelimitedFileReaderConfig();
+            config ??= new DelimitedFileReaderConfig();
             var objProperties = typeof(T).GetProperties();
 
             foreach (var x in Rows)

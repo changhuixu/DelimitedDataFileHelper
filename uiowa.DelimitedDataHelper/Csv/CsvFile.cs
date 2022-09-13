@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace uiowa.DelimitedDataHelper.Csv
+﻿namespace uiowa.DelimitedDataHelper
 {
     /// <inheritdoc />
     public class CsvFile : DelimitedDataFile
@@ -30,9 +27,9 @@ namespace uiowa.DelimitedDataHelper.Csv
         /// <typeparam name="T"></typeparam>
         /// <param name="config">Optional. By default, reader will trim starting/ending white spaces of each entry and reader will parse "" quoted entries.</param>
         /// <returns></returns>
-        public IEnumerable<T> GetData<T>(CsvReaderConfig config = null) where T : new()
+        public IEnumerable<T> GetData<T>(CsvReaderConfig? config = null) where T : new()
         {
-            if (config == null) config = new CsvReaderConfig();
+            config ??= new CsvReaderConfig();
             return config.IsQuoted ? ParseQuotedCsvData<T>(config) : base.GetData<T>(config);
         }
 
@@ -43,7 +40,7 @@ namespace uiowa.DelimitedDataHelper.Csv
             {
                 var result = new T();
                 var items = x.Split(new[] { QuotedDelimiter }, StringSplitOptions.None);
-                items[0] = items[0].Substring(1);
+                items[0] = items[0][1..];
                 try
                 {
                     items[objProperties.Length - 1] = TrimLastCharacter(items[objProperties.Length - 1]);
@@ -65,7 +62,7 @@ namespace uiowa.DelimitedDataHelper.Csv
 
         private static string TrimLastCharacter(string s)
         {
-            return s.Substring(0, s.Length - 1);
+            return s[..^1];
         }
     }
 }

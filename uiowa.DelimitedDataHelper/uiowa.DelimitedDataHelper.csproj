@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <PackageId>uiowa.DelimitedDataHelper</PackageId>
     <Title>Delimited Data Helper</Title>
     <Version>1.0.2</Version>
@@ -12,19 +12,19 @@
     <Tags>Delimited Data Reader Writer Csv Tab Pipe</Tags>
     <ProjectUrl>https://github.com/changhuixu/DelimitedDataFileHelper</ProjectUrl>
     <PackageProjectUrl>https://github.com/changhuixu/DelimitedDataFileHelper</PackageProjectUrl>
-    <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <RepositoryUrl>https://github.com/changhuixu/DelimitedDataFileHelper</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageIconUrl></PackageIconUrl>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\LICENSE">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
+    <None Include="..\README.md" Pack="true" PackagePath="\"/>
+    <None Include="..\LICENSE" Pack="true" PackagePath="\"/>
   </ItemGroup>
-
 </Project>

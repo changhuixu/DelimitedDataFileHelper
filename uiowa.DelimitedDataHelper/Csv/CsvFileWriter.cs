@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace uiowa.DelimitedDataHelper.Csv
+﻿namespace uiowa.DelimitedDataHelper
 {
     internal class CsvFileWriter : DelimitedFileWriter
     {
@@ -9,9 +7,9 @@ namespace uiowa.DelimitedDataHelper.Csv
 
         }
 
-        protected override string Escape(object o)
+        protected override string Escape(object? o)
         {
-            return o == null ? "" : $"\"{o.ToString().Replace("\"", "\"\"")}\"";
+            return o == null ? "" : $"\"{o.ToString()?.Replace("\"", "\"\"")}\"";
         }
     }
 
@@ -29,7 +27,7 @@ namespace uiowa.DelimitedDataHelper.Csv
         /// <param name="data"></param>
         /// <param name="fileName">Full path for output file.</param>
         /// <param name="config">Optional. By default, null, which means will write header and will write "" quoted entries.</param>
-        public static void WriteToCsvFile<T>(this IEnumerable<T> data, string fileName, CsvWriterConfig config = null)
+        public static void WriteToCsvFile<T>(this IEnumerable<T> data, string fileName, CsvWriterConfig? config = null)
         {
             if (config == null) config = new CsvWriterConfig();
             if (config.IsQuoted)
@@ -47,9 +45,9 @@ namespace uiowa.DelimitedDataHelper.Csv
         /// <param name="config"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public static string AsString<T>(this IEnumerable<T> data, CsvWriterConfig config = null)
+        public static string AsCsvString<T>(this IEnumerable<T> data, CsvWriterConfig? config = null)
         {
-            if (config == null) config = new CsvWriterConfig();
+            config ??= new CsvWriterConfig();
             if (config.IsQuoted)
             {
                 return new CsvFileWriter().ConvertToString(data, config);

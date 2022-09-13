@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace uiowa.DelimitedDataHelper.Tab
+﻿namespace uiowa.DelimitedDataHelper
 {
     /// <inheritdoc />
     public class TabDelimitedFile : DelimitedDataFile
@@ -29,7 +27,7 @@ namespace uiowa.DelimitedDataHelper.Tab
         /// <param name="data"></param>
         /// <param name="fileName"></param>
         /// <param name="config"></param>
-        public static void WriteToTabDelimitedFile<T>(this IEnumerable<T> data, string fileName, DelimitedFileWriterConfig config = null)
+        public static void WriteToTabDelimitedFile<T>(this IEnumerable<T> data, string fileName, DelimitedFileWriterConfig? config = null)
         {
             new DelimitedFileWriter().CreateFileWithData(data, fileName, config);
         }
@@ -41,7 +39,7 @@ namespace uiowa.DelimitedDataHelper.Tab
         /// <param name="config"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public static string AsTabedString<T>(this IEnumerable<T> data, DelimitedFileWriterConfig config = null)
+        public static string AsTabDelimitedString<T>(this IEnumerable<T> data, DelimitedFileWriterConfig? config = null)
         {
             return new DelimitedFileWriter().ConvertToString(data, config);
         }

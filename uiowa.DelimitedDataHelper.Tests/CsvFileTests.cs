@@ -1,8 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using uiowa.DelimitedDataHelper.Csv;
 using uiowa.DelimitedDataHelper.Tests.TestModels;
 
 namespace uiowa.DelimitedDataHelper.Tests
@@ -46,10 +42,8 @@ namespace uiowa.DelimitedDataHelper.Tests
         [TestMethod]
         public void ShouldThrowExceptionWhenCsvHasExtraColumn()
         {
-            Action action = () => _ = new CsvFile(_input2)
-                .SkipNRows(1)
-                .GetData<Contact>().ToList();
-            var e = Assert.ThrowsException<IndexOutOfRangeException>(action);
+            var e = Assert.ThrowsException<IndexOutOfRangeException>(() =>
+                _ = new CsvFile(_input2).SkipNRows(1).GetData<Contact>().ToList());
             Assert.AreEqual("Index was outside the bounds of the array. DataRow: \"Johnson\",\"ABC\",\"johnson@abc.com\"", e.Message);
         }
 
@@ -58,7 +52,7 @@ namespace uiowa.DelimitedDataHelper.Tests
         {
             var dataString = new CsvFile(_input)
                 .SkipNRows(1)
-                .GetData<Contact>().AsString();
+                .GetData<Contact>().AsCsvString();
             var result1 = File.ReadAllLines(_input).ToArray();
             var result2 = dataString.Split(Environment.NewLine).Where(x => !string.IsNullOrWhiteSpace(x)).ToArray();
             CollectionAssert.AreEqual(result2, result1);

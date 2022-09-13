@@ -1,4 +1,4 @@
-﻿namespace uiowa.DelimitedDataHelper.Csv
+﻿namespace uiowa.DelimitedDataHelper
 {
     /// <inheritdoc />
     /// <summary>
