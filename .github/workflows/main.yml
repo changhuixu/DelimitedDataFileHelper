@@ -8,39 +8,38 @@ on:
       - 'v*.*.*'
 
 jobs:
-
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@main
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v2
-      with:
-        dotnet-version: '6.0.x'
-    - name: Generate coverage report
-      run: |
-        printenv
-        cd ./uiowa.DelimitedDataHelper.Tests/
-        dotnet test /p:CollectCoverage=true /p:CoverletOutput=TestResults/ /p:CoverletOutputFormat=lcov
-    - name: Publish coverage report to coveralls.io
-      uses: coverallsapp/github-action@master
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        path-to-lcov: ./uiowa.DelimitedDataHelper.Tests/TestResults/coverage.info 
-    - name: Build and deploy NuGet package
-      env:
-        NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
-      run: |
-        echo $GITHUB_REF
-        RELEASE_VERSION=${GITHUB_REF:10}
-        echo $RELEASE_VERSION
-        if [[ $RELEASE_VERSION == v* ]]; then
-          echo "Publishing NuGet package version:" $RELEASE_VERSION
-          cd ./uiowa.DelimitedDataHelper/
-          dotnet publish -c=Release /p:Version="${RELEASE_VERSION:1}"
-          ls ./bin/Release
-          dotnet nuget push ./bin/Release/*.nupkg -k $NUGET_API_KEY -s https://api.nuget.org/v3/index.json
-        else
-          echo "No valid version tag was found. Done for today."
-        fi
+      - uses: actions/checkout@main
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.x'
+      - name: Generate coverage report
+        run: |
+          printenv
+          cd ./uiowa.DelimitedDataHelper.Tests/
+          dotnet test /p:CollectCoverage=true /p:CoverletOutput=TestResults/ /p:CoverletOutputFormat=lcov
+      - name: Publish coverage report to coveralls.io
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-lcov: ./uiowa.DelimitedDataHelper.Tests/TestResults/coverage.info
+      - name: Build and deploy NuGet package
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+        run: |
+          echo $GITHUB_REF
+          RELEASE_VERSION=${GITHUB_REF:10}
+          echo $RELEASE_VERSION
+          if [[ $RELEASE_VERSION == v* ]]; then
+            echo "Publishing NuGet package version:" $RELEASE_VERSION
+            cd ./uiowa.DelimitedDataHelper/
+            dotnet publish -c=Release /p:Version="${RELEASE_VERSION:1}"
+            ls ./bin/Release
+            dotnet nuget push ./bin/Release/*.nupkg -k $NUGET_API_KEY -s https://api.nuget.org/v3/index.json
+          else
+            echo "No valid version tag was found. Done for today."
+          fi
